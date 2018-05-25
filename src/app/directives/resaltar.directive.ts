@@ -1,12 +1,16 @@
 import { Directive, ElementRef, Renderer2, OnInit, Input } from "@angular/core";
 
 @Directive({
-    selector: '[resaltar]'
+    selector: '[appResaltar]'
 })
 
-export class ResaltarDirective implements OnInit{
-    constructor(private elRef: ElementRef,private renderer: Renderer2){}
-    @Input('resaltar') plan: string = '';
+export class AppResaltarDirective implements OnInit{
+    constructor(
+        private elRef: ElementRef,
+        private renderer: Renderer2
+    ){}
+    
+    @Input('appResaltar') plan: string = '';
     ngOnInit(){
         if (this.plan == 'pagado'){
             this.renderer.setStyle(this.elRef.nativeElement,'background-color','yellow');
