@@ -1,23 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
 <agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
 <hr/>
-<ul>
-  <ng-container *ngFor="let lugar of lugares">
-    <li *ngIf="lugar.active">{{lugar.nombre}}</li>
-  </ng-container>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Lugares Cercanos</h2>
+      <ul class="list-group">
+        <ng-container *ngFor="let lugar of lugares">
+          <li class="list-group-item" *ngIf="lugar.active">{{lugar.nombre}}</li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Destacados</h2>
 
-<ul>
-  <ng-container *ngFor="let lugar of lugares;odd as numpar" [ngSwitch]="lugar.cercania">
-    <a >
-      <li appContar-clicks [ngStyle]="{color: (lugar.active) ? 'black' : 'gray' }" [ngClass]="{numero_par: numpar}" [appResaltar]="lugar.plan">
-        {{lugar.nombre}} -
-        <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Muy Cercano</span>
-        <span *ngSwitchCase="2" [ngStyle]="{color: 'black'}">Cercano</span>
-        <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Lejano</span>
-      </li>
-    </a>
-  </ng-container>
-</ul>
+    </div>
+  </div>
+</div>
+<br>
