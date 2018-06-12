@@ -9,11 +9,13 @@ import { AppContarClicksDirective } from './directives/app.contar-clicks.directi
 import { Routes, RouterModule } from '@angular/router';
 import { DetallesComponent } from './detalles/detalles.component';
 import { LugaresComponent } from './lugares/lugares.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 const appRoutes: Routes = [
   {path: '', component: LugaresComponent},
   {path: 'lugares', component: LugaresComponent},
-  {path: 'detalles/:id', component: DetallesComponent}
+  {path: 'detalles/:id', component: DetallesComponent},
+  {path: 'contacto', component: ContactoComponent}
 ];
 
 @NgModule({
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     AppResaltarDirective,
     AppContarClicksDirective,
     DetallesComponent,
-    LugaresComponent
+    LugaresComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
