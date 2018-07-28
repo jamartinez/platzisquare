@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   {path: 'lugares', component: LugaresComponent},
   {path: 'detalles/:id', component: DetallesComponent},
   {path: 'contacto', component: ContactoComponent},
-  {path: 'crear', component: CrearComponent}
+  {path: 'crear/:id', component: CrearComponent}
 ];
 
 
@@ -55,7 +55,7 @@ const appRoutes: Routes = [
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireDatabaseModule,
-    HttpModule   
+    HttpModule
   ],
   providers: [LugaresService],
   bootstrap: [AppComponent]

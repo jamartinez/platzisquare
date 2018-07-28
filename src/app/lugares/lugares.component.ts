@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
 import { LugaresService } from '../services/lugares.services';
 
 @Component({
@@ -17,11 +16,17 @@ export class LugaresComponent {
   constructor(private lugaresService: LugaresService){
     //this.lugares = lugaresService.getLugares();
     lugaresService.getLugares()
-      .valueChanges().subscribe(lugares => {
-        //debugger;
+      //.valueChanges()
+      .subscribe(lugares => {
         //console.log(lugares);
-        this.lugares = lugares;
-      })
+        //debugger;
+        var me = this;
+        me.lugares = lugares;
+        me.lugares = Object.keys(me.lugares).map(function (key) { return me.lugares[key]; });
+      },error => {
+        console.log('Error en getLugares: ' + error);
+        alert('Existen inconvenientes para cargar los datos, disculpe las molestias. Error: ' + error.statusText);
+      });
       
   }
 }
