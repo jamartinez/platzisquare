@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Http, Headers } from "@angular/http";
 import 'rxjs/add/operator/map'
+import { AutorizacionService } from "./autorizacion.service";
 
 @Injectable()
 
@@ -16,16 +18,15 @@ export class LugaresService{
         {id: 6,plan: 'gratuito',  cercania:3, distancia: 120, active: false,  nombre:'Zapatería el Clavo', descripcion: 'La información de local no se encuentra disponible. En breve corregiremos este inconveniente.'},
     ];
     
-   constructor(private afDB: AngularFireDatabase, private http: Http){
+   constructor(private afDB: AngularFireDatabase, private http: Http,private authService:AutorizacionService){
     }
     public getLugares(){
-        //return this.afDB.list('lugares/');
-        //debugger;
-        return this.http.get(this.API_ENDPOINT + '/.json')
-            .map((resultado)=> {
-                const data = resultado.json().lugares
-                return data
-            });
+        return this.afDB.list('lugares/').valueChanges();
+        /*return this.http.get(this.API_ENDPOINT + '/.json')// + this.authService.id_token
+        .map((resultado)=> {
+            const data = resultado.json().lugares;
+            return data;
+        });*/
     }
     
     public buscarLugar(id: number){
