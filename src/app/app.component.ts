@@ -11,6 +11,7 @@ export class AppComponent {
   constructor (private autorizacionService:AutorizacionService){
     this.autorizacionService.isLogged()
       .subscribe((result) => {
+        
         if (result && result.uid){
           this.loggedIn = true;
         }else{

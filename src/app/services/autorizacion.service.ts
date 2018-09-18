@@ -1,5 +1,6 @@
 import { Injectable } from "../../../node_modules/@angular/core";
 import { AngularFireAuth } from "../../../node_modules/angularfire2/auth";
+import * as firebase from 'firebase/app';
 
 @Injectable()
 
@@ -8,6 +9,16 @@ export class AutorizacionService{
 
     constructor(private AngularFireAuth: AngularFireAuth){
         this.isLogged();
+    }
+    public facebookLogin(){
+        this.AngularFireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+            .then((result) => {
+                console.log(result);
+                alert('Usuario logueado con Facebook!');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     public login = (email,password) => {
         console.log('Metodo de login!');
